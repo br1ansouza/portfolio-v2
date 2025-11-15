@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
-import { globalStyles } from '../../styles/globalStyles'
-import { animations } from '../../styles/animations'
+import { globalStyles } from '../../../styles/globalStyles'
+import { animations } from '../../../styles/animations'
 
 const Certificates = () => {
   return (

@@ -1,18 +1,18 @@
 import { motion } from 'framer-motion'
-import { globalStyles } from '../../styles/globalStyles'
-import { animations } from '../../styles/animations'
+import { globalStyles } from '../../../styles/globalStyles'
+import { animations } from '../../../styles/animations'
 
-const About = () => {
+const Resume = () => {
   return (
-    <section style={globalStyles.sectionAlt}>
+    <section style={globalStyles.section}>
       <motion.div 
-        id="about"
+        id="resume"
         style={globalStyles.container}
-        {...animations.fadeIn}
+        {...animations.slideDown}
       >
         <motion.div {...animations.containerFade}>
           <motion.h2 style={globalStyles.title} {...animations.titleFade}>
-            Sobre mim
+            Resumos
           </motion.h2>
           <motion.p style={globalStyles.text} {...animations.textFade}>
             Conteúdo em desenvolvimento...
@@ -23,4 +23,4 @@ const About = () => {
   )
 }
 
-export default About
+export default Resume

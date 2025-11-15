@@ -1,18 +1,18 @@
 import { motion } from 'framer-motion'
-import { globalStyles } from '../../styles/globalStyles'
-import { animations } from '../../styles/animations'
+import { globalStyles } from '../../../styles/globalStyles'
+import { animations } from '../../../styles/animations'
 
-const Projects = () => {
+const Contact = () => {
   return (
-    <section style={globalStyles.section}>
+    <section style={globalStyles.sectionAlt}>
       <motion.div 
-        id="projects"
+        id="contact"
         style={globalStyles.container}
-        {...animations.slideLeft}
+        {...animations.fadeIn}
       >
         <motion.div {...animations.containerFade}>
           <motion.h2 style={globalStyles.title} {...animations.titleFade}>
-            Projetos
+            Contatos
           </motion.h2>
           <motion.p style={globalStyles.text} {...animations.textFade}>
             Conteúdo em desenvolvimento...
@@ -23,4 +23,4 @@ const Projects = () => {
   )
 }
 
-export default Projects
+export default Contact

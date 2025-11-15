@@ -1,8 +1,8 @@
 import { motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
-import { globalStyles } from '../../styles/globalStyles'
-import { animations, gsapConfig } from '../../styles/animations'
+import { globalStyles } from '../../../styles/globalStyles'
+import { animations, gsapConfig } from '../../../styles/animations'
 
 const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null)
