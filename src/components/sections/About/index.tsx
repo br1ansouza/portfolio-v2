@@ -4,9 +4,79 @@ import { gsap } from 'gsap'
 import { globalStyles } from '../../../styles/globalStyles'
 import { animations, gsapConfig } from '../../../styles/animations'
 import { theme } from '../../../styles/theme'
+import AnimatedText from './AnimatedText'
+import { allTechnologies } from './technologies'
+import { aboutContent } from './content'
 
 const About = () => {
   const techRef = useRef<HTMLDivElement>(null)
+  const titleRef = useRef<HTMLHeadingElement>(null)
+
+  useEffect(() => {
+    if (!titleRef.current) return
+
+    const text = 'Sobre mim'
+    titleRef.current.innerHTML = text
+      .split('')
+      .map((char) => 
+        char === ' ' 
+          ? '<span class="letter" style="display: inline-block;">&nbsp;</span>'
+          : `<span class="letter" style="display: inline-block;">${char}</span>`
+      )
+      .join('')
+
+    let oldX = 0
+    let oldY = 0
+    let deltaX = 0
+    let deltaY = 0
+
+    const handleMouseMove = (e: MouseEvent) => {
+      deltaX = e.clientX - oldX
+      deltaY = e.clientY - oldY
+      oldX = e.clientX
+      oldY = e.clientY
+    }
+
+    const letters = titleRef.current.querySelectorAll('.letter')
+    const config = gsapConfig.letterEffect
+    
+    letters.forEach((letter) => {
+      letter.addEventListener('mouseenter', () => {
+        const tl = gsap.timeline({
+          onComplete: () => {
+            tl.kill()
+          }
+        })
+        tl.timeScale(config.timeScale)
+
+        tl.to(letter, {
+          x: deltaX * config.movement.multiplier,
+          y: deltaY * config.movement.multiplier,
+          scale: config.scale,
+          rotation: config.rotation.random(),
+          duration: config.movement.duration,
+          ease: config.movement.ease
+        })
+        tl.to(letter, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          rotation: 0,
+          duration: config.return.duration,
+          ease: config.return.ease
+        })
+      })
+    })
+
+    const titleElement = titleRef.current
+    if (titleElement) {
+      titleElement.addEventListener('mousemove', handleMouseMove)
+
+      return () => {
+        titleElement.removeEventListener('mousemove', handleMouseMove)
+      }
+    }
+  }, [])
 
   useEffect(() => {
     if (!techRef.current) return
@@ -70,25 +140,6 @@ const About = () => {
     }
   }, [])
 
-  const allTechnologies = [
-    { name: 'JavaScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/javascript/javascript-original.svg' },
-    { name: 'TypeScript', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/typescript/typescript-original.svg' },
-    { name: 'React', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/react/react-original.svg' },
-    { name: 'Bootstrap', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/bootstrap/bootstrap-original.svg' },
-    { name: 'Material UI', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/materialui/materialui-original.svg' },
-    { name: 'Node.js', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nodejs/nodejs-original.svg' },
-    { name: 'NestJS', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/nestjs/nestjs-original.svg' },
-    { name: 'Express', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/express/express-original.svg' },
-    { name: 'PostgreSQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/postgresql/postgresql-original.svg' },
-    { name: 'MySQL', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/mysql/mysql-original.svg' },
-    { name: 'Git', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/git/git-original.svg' },
-    { name: 'Docker', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/docker/docker-original.svg' },
-    { name: 'Postman', icon: 'https://www.vectorlogo.zone/logos/getpostman/getpostman-icon.svg' },
-    { name: 'TypeORM', icon: 'https://raw.githubusercontent.com/typeorm/typeorm/master/resources/logo_big.png' },
-    { name: 'HTML5', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/html5/html5-original.svg' },
-    { name: 'CSS3', icon: 'https://cdn.jsdelivr.net/gh/devicons/devicon/icons/css3/css3-original.svg' }
-  ]
-
   const techGridStyle = {
     display: 'grid',
     gridTemplateColumns: 'repeat(4, 1fr)',
@@ -144,14 +195,22 @@ const About = () => {
         {...animations.fadeIn}
       >
         <motion.div {...animations.containerFade}>
-          <motion.h2 style={globalStyles.title} {...animations.titleFade}>
+          <motion.h2 
+            ref={titleRef}
+            style={{
+              ...globalStyles.title,
+              fontFamily: "'Fredoka One', cursive",
+              cursor: 'pointer'
+            }}
+            {...animations.titleFade}
+          >
             Sobre mim
           </motion.h2>
           
           <motion.div 
             style={{
               display: 'grid',
-              gridTemplateColumns: '1fr 1fr',
+              gridTemplateColumns: '1.2fr 0.8fr',
               gap: '4rem',
               alignItems: 'center',
               marginTop: '2rem'
@@ -159,21 +218,21 @@ const About = () => {
             {...animations.textFade}
           >
             <div style={{ textAlign: 'left' }}>
-              <p style={{ ...globalStyles.text, marginBottom: '1.5rem', fontSize: '1.1rem' }}>
-                Desenvolvedor Frontend especializado em criar experiências digitais modernas e funcionais. 
-                Trabalho com React e TypeScript, transformando ideias em interfaces intuitivas e responsivas.
-              </p>
-              
-              <p style={{ ...globalStyles.text, marginBottom: '1.5rem', fontSize: '1.1rem' }}>
-                Minha abordagem combina design centrado no usuário com código limpo e escalável. 
-                Tenho experiência tanto no desenvolvimento frontend quanto backend, permitindo uma 
-                visão completa do produto digital.
-              </p>
-              
-              <p style={{ ...globalStyles.text, fontSize: '1.1rem' }}>
-                Atualmente focado no ecossistema React, Node.js e tecnologias modernas que 
-                potencializam tanto a experiência do usuário quanto a produtividade no desenvolvimento.
-              </p>
+              {aboutContent.paragraphs.map((paragraph, index) => (
+                <AnimatedText 
+                  key={index}
+                  style={{ 
+                    ...globalStyles.text, 
+                    marginBottom: index < aboutContent.paragraphs.length - 1 ? '1.5rem' : '0',
+                    fontSize: '1.2rem',
+                    fontFamily: "'Inter', -apple-system, BlinkMacSystemFont, sans-serif",
+                    fontWeight: '400',
+                    lineHeight: '1.6'
+                  }}
+                >
+                  {paragraph}
+                </AnimatedText>
+              ))}
             </div>
 
             <motion.div 
