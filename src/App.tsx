@@ -1,46 +1,34 @@
-import React, { useRef } from 'react'
-import gsap from 'gsap'
-import { ScrollTrigger } from 'gsap/ScrollTrigger'
-import { ScrollSmoother } from 'gsap/ScrollSmoother'
-import { useGSAP } from '@gsap/react'
-import { Header } from './components/layout'
-import { Hero, About, Projects, Certificates, Resume, Contact } from './components/sections'
-
-gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother)
+import { useState } from 'react'
+import reactLogo from './assets/react.svg'
+import viteLogo from '/vite.svg'
+import './App.css'
 
 function App() {
-  const main = useRef<HTMLDivElement>(null)
-  const smoother = useRef<any>(null)
-
-  useGSAP(
-    () => {
-      smoother.current = ScrollSmoother.create({
-        smooth: 1.5,
-        effects: true,
-      })
-    },
-    { scope: main }
-  )
+  const [count, setCount] = useState(0)
 
   return (
-    <div id="smooth-wrapper" ref={main}>
-      <div 
-        id="smooth-content"
-        style={{ 
-          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-          background: 'linear-gradient(135deg, #FCF9EA 0%, #D0F2E7 70%, #4A6B9A 100%)',
-          minHeight: '100vh'
-        }}
-      >
-        <Header smoother={smoother} />
-        <Hero />
-        <About />
-        <Projects />
-        <Certificates />
-        <Resume />
-        <Contact />
+    <>
+      <div>
+        <a href="https://vite.dev" target="_blank">
+          <img src={viteLogo} className="logo" alt="Vite logo" />
+        </a>
+        <a href="https://react.dev" target="_blank">
+          <img src={reactLogo} className="logo react" alt="React logo" />
+        </a>
       </div>
-    </div>
+      <h1>Vite + React</h1>
+      <div className="card">
+        <button onClick={() => setCount((count) => count + 1)}>
+          count is {count}
+        </button>
+        <p>
+          Edit <code>src/App.tsx</code> and save to test HMR
+        </p>
+      </div>
+      <p className="read-the-docs">
+        Click on the Vite and React logos to learn more
+      </p>
+    </>
   )
 }
 
