@@ -88,6 +88,11 @@ export const animations = {
     whileHover: { y: -2 },
     whileTap: { y: 0 },
     transition: { duration: 0.2 }
+  },
+
+  techIconHover: {
+    whileHover: { scale: 1.1 },
+    transition: { duration: 0.2 }
   }
 }
 
@@ -107,6 +112,30 @@ export const gsapConfig = {
     return: {
       duration: 0.8,
       ease: 'elastic.out(1, 0.3)'
+    }
+  },
+  
+  techCards: {
+    from: { y: 50, opacity: 0.8 },
+    to: { y: 0, opacity: 1 },
+    scrollTrigger: {
+      start: 'top 80%',
+      end: 'bottom 20%',
+      scrub: 1
+    }
+  },
+
+  techIcons: {
+    timeScale: 1.2,
+    movement: {
+      velocity: 15
+    },
+    rotation: {
+      duration: 0.4,
+      random: () => (Math.random() - 0.5) * 30,
+      yoyo: true,
+      repeat: 1,
+      ease: 'power1.inOut'
     }
   }
 }
