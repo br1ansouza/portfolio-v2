@@ -1,5 +1,7 @@
 import { motion } from 'framer-motion'
 import { animations } from '../../styles/animations'
+import { theme } from '../../styles/theme'
+import siglaLogo from '../../assets/Sigla.png'
 
 const Header = () => {
   const scrollToSection = (id: string) => {
@@ -13,8 +15,10 @@ const Header = () => {
     position: 'fixed' as const,
     top: 0,
     width: '100%',
-    background: 'transparent',
-    borderBottom: '2px solid rgba(255, 255, 255, 0.2)',
+    background: 'rgba(252, 249, 234, 0.95)',
+    backdropFilter: 'blur(10px)',
+    borderBottom: `1px solid ${theme.palette.primary.main}`,
+    boxShadow: theme.shadows[1],
     zIndex: 1000,
     padding: '1rem 0'
   }
@@ -29,9 +33,8 @@ const Header = () => {
   }
 
   const logoStyle = {
-    fontSize: '1.5rem',
-    fontWeight: 'bold',
-    color: 'white'
+    height: '40px',
+    width: 'auto'
   }
 
   const listStyle = {
@@ -45,10 +48,12 @@ const Header = () => {
   const buttonStyle = {
     background: 'none',
     border: 'none',
-    color: 'white',
+    color: theme.palette.text.secondary,
     cursor: 'pointer',
     fontSize: '1rem',
-    padding: '0.5rem 1rem'
+    padding: '0.5rem 1rem',
+    borderRadius: '8px',
+    transition: 'all 0.3s ease'
   }
 
   const navItems = [
@@ -62,16 +67,25 @@ const Header = () => {
   return (
     <motion.header style={headerStyle} {...animations.headerSlide}>
       <nav style={navStyle}>
-        <motion.div style={logoStyle} {...animations.logoHover}>
-          Portfolio
-        </motion.div>
+        <img 
+          src={siglaLogo} 
+          alt="Logo" 
+          style={logoStyle}
+        />
         <ul style={listStyle}>
           {navItems.map((item) => (
             <li key={item.id}>
               <motion.button 
                 onClick={() => scrollToSection(item.id)} 
                 style={buttonStyle}
-                {...animations.buttonHover}
+                whileHover={{ 
+                  y: -2,
+                  color: theme.palette.text.primary,
+                  backgroundColor: theme.palette.primary.main,
+                  boxShadow: theme.shadows[2]
+                }}
+                whileTap={{ y: 0 }}
+                transition={{ duration: 0.2 }}
               >
                 {item.label}
               </motion.button>

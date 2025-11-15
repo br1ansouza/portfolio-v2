@@ -1,22 +1,23 @@
 export const theme = {
   palette: {
     primary: {
-      main: '#667eea',
-      light: '#9aa7ff',
-      dark: '#3f51b5'
+      main: '#D0F2E7',
+      light: '#E8F8F3',
+      dark: '#A8E6D1'
     },
     secondary: {
-      main: '#764ba2',
-      light: '#a478d4',
-      dark: '#4a2c73'
+      main: '#234374',
+      light: '#4A6B9A',
+      dark: '#1A3256'
     },
     background: {
-      default: '#ffffff',
-      paper: '#f8f9fa'
+      default: '#FCF9EA',
+      paper: '#FCF9EA'
     },
     text: {
-      primary: '#333333',
-      secondary: '#666666'
+      primary: '#234374',
+      secondary: '#4A6B9A',
+      accent: '#1A3256'
     }
   },
   
@@ -52,8 +53,8 @@ export const theme = {
   },
 
   shadows: {
-    1: '0 2px 4px rgba(0,0,0,0.1)',
-    2: '0 4px 8px rgba(0,0,0,0.15)',
-    3: '0 8px 16px rgba(0,0,0,0.2)'
+    1: '0 2px 4px rgba(35, 67, 116, 0.1)',
+    2: '0 4px 8px rgba(35, 67, 116, 0.15)',
+    3: '0 8px 16px rgba(35, 67, 116, 0.2)'
   }
 }

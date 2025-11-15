@@ -1,17 +1,16 @@
 import { motion } from 'framer-motion'
 import { globalStyles } from '../../styles/globalStyles'
 import { animations } from '../../styles/animations'
-import { Box } from '../layout'
 
 const Contact = () => {
   return (
-    <Box component="section" sx={{ ...globalStyles.sectionAlt }}>
+    <section style={globalStyles.sectionAlt}>
       <motion.div 
         id="contact"
         style={globalStyles.container}
-        {...animations.scaleIn}
+        {...animations.fadeIn}
       >
-        <motion.div {...animations.containerScale}>
+        <motion.div {...animations.containerFade}>
           <motion.h2 style={globalStyles.title} {...animations.titleFade}>
             Contatos
           </motion.h2>
@@ -20,7 +19,7 @@ const Contact = () => {
           </motion.p>
         </motion.div>
       </motion.div>
-    </Box>
+    </section>
   )
 }
 
