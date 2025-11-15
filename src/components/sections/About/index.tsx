@@ -4,6 +4,7 @@ import { gsap } from 'gsap'
 import { globalStyles } from '../../../styles/globalStyles'
 import { animations, gsapConfig } from '../../../styles/animations'
 import { theme } from '../../../styles/theme'
+import AnimatedText from './AnimatedText'
 
 const About = () => {
   const techRef = useRef<HTMLDivElement>(null)
@@ -159,21 +160,21 @@ const About = () => {
             {...animations.textFade}
           >
             <div style={{ textAlign: 'left' }}>
-              <p style={{ ...globalStyles.text, marginBottom: '1.5rem', fontSize: '1.1rem' }}>
+              <AnimatedText style={{ ...globalStyles.text, marginBottom: '1.5rem', fontSize: '1.1rem' }}>
                 Desenvolvedor Frontend especializado em criar experiências digitais modernas e funcionais. 
                 Trabalho com React e TypeScript, transformando ideias em interfaces intuitivas e responsivas.
-              </p>
+              </AnimatedText>
               
-              <p style={{ ...globalStyles.text, marginBottom: '1.5rem', fontSize: '1.1rem' }}>
+              <AnimatedText style={{ ...globalStyles.text, marginBottom: '1.5rem', fontSize: '1.1rem' }}>
                 Minha abordagem combina design centrado no usuário com código limpo e escalável. 
                 Tenho experiência tanto no desenvolvimento frontend quanto backend, permitindo uma 
                 visão completa do produto digital.
-              </p>
+              </AnimatedText>
               
-              <p style={{ ...globalStyles.text, fontSize: '1.1rem' }}>
+              <AnimatedText style={{ ...globalStyles.text, fontSize: '1.1rem' }}>
                 Atualmente focado no ecossistema React, Node.js e tecnologias modernas que 
                 potencializam tanto a experiência do usuário quanto a produtividade no desenvolvimento.
-              </p>
+              </AnimatedText>
             </div>
 
             <motion.div 
