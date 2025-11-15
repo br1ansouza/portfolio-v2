@@ -90,3 +90,23 @@ export const animations = {
     transition: { duration: 0.2 }
   }
 }
+
+export const gsapConfig = {
+  letterEffect: {
+    timeScale: 2.5,
+    movement: {
+      multiplier: 4,
+      duration: 0.4,
+      ease: 'power3.out'
+    },
+    scale: 1.5,
+    rotation: {
+      range: 60,
+      random: () => (Math.random() - 0.5) * 60
+    },
+    return: {
+      duration: 0.8,
+      ease: 'elastic.out(1, 0.3)'
+    }
+  }
+}

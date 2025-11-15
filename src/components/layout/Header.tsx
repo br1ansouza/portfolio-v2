@@ -3,11 +3,14 @@ import { animations } from '../../styles/animations'
 import { theme } from '../../styles/theme'
 import siglaLogo from '../../assets/Sigla.png'
 
-const Header = () => {
+interface HeaderProps {
+  smoother: React.MutableRefObject<any>
+}
+
+const Header = ({ smoother }: HeaderProps) => {
   const scrollToSection = (id: string) => {
-    const element = document.getElementById(id)
-    if (element) {
-      element.scrollIntoView({ behavior: 'smooth', block: 'start' })
+    if (smoother.current) {
+      smoother.current.scrollTo(`#${id}`, true, 'top 100px')
     }
   }
 

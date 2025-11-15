@@ -7,11 +7,20 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  scroll-behavior: auto;
 }
 
 body {
   font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   background-color: #FCF9EA;
   color: #234374;
+  overflow-x: hidden;
+}
+
+#smooth-wrapper {
+  overflow: hidden;
+}
+
+#smooth-content {
+  overflow: visible;
 }
