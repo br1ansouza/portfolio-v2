@@ -1,17 +1,16 @@
 import { motion } from 'framer-motion'
 import { globalStyles } from '../../styles/globalStyles'
 import { animations } from '../../styles/animations'
-import { Box } from '../layout'
 
 const About = () => {
   return (
-    <Box component="section" sx={{ ...globalStyles.sectionAlt }}>
+    <section style={globalStyles.sectionAlt}>
       <motion.div 
         id="about"
         style={globalStyles.container}
-        {...animations.slideUp}
+        {...animations.fadeIn}
       >
-        <motion.div {...animations.containerScale}>
+        <motion.div {...animations.containerFade}>
           <motion.h2 style={globalStyles.title} {...animations.titleFade}>
             Sobre mim
           </motion.h2>
@@ -20,7 +19,7 @@ const About = () => {
           </motion.p>
         </motion.div>
       </motion.div>
-    </Box>
+    </section>
   )
 }
 
