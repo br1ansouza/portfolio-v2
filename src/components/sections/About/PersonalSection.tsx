@@ -1,17 +1,12 @@
-import { motion } from 'framer-motion'
-import { useState } from 'react'
 import { theme } from '../../../styles/theme'
 import brazilFlag from '../../../assets/icons/brazil-flag.png'
 import photo1 from '../../../assets/photos/photo-1.jpg'
 import photo2 from '../../../assets/photos/photo-2.jpg'
 import photo3 from '../../../assets/photos/photo-3.jpg'
+import CardStack from './CardStack'
 
 const PersonalSection = () => {
-  const [currentPhoto, setCurrentPhoto] = useState(0)
   const photos = [photo2, photo3, photo1]
-
-  const nextPhoto = () => setCurrentPhoto((prev) => (prev + 1) % photos.length)
-  const prevPhoto = () => setCurrentPhoto((prev) => (prev - 1 + photos.length) % photos.length)
 
   return (
     <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', alignItems: 'start' }}>
@@ -34,75 +29,7 @@ const PersonalSection = () => {
         </p>
       </div>
 
-      <div>
-        <div style={{ borderRadius: '12px', overflow: 'hidden', boxShadow: theme.shadows[3], aspectRatio: '4/3' }}>
-          <motion.img
-            key={currentPhoto}
-            src={photos[currentPhoto]}
-            alt="Foto pessoal"
-            style={{ width: '100%', height: '100%', objectFit: 'cover' }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.3 }}
-          />
-        </div>
-
-        <div style={{ display: 'flex', justifyContent: 'center', gap: '1rem', marginTop: '1rem', alignItems: 'center' }}>
-          <motion.button
-            onClick={prevPhoto}
-            style={{
-              background: 'none',
-              border: `2px solid ${theme.palette.text.secondary}`,
-              borderRadius: '50%',
-              width: '40px',
-              height: '40px',
-              cursor: 'pointer',
-              color: theme.palette.text.secondary,
-              fontSize: '1.2rem'
-            }}
-            whileHover={{ scale: 1.1, borderColor: theme.palette.text.primary }}
-            whileTap={{ scale: 0.95 }}
-          >
-            ←
-          </motion.button>
-
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            {photos.map((_, index) => (
-              <button
-                key={index}
-                onClick={() => setCurrentPhoto(index)}
-                style={{
-                  width: '10px',
-                  height: '10px',
-                  borderRadius: '50%',
-                  border: 'none',
-                  background: currentPhoto === index ? theme.palette.text.primary : theme.palette.primary.dark,
-                  cursor: 'pointer',
-                  transition: 'background 0.3s'
-                }}
-              />
-            ))}
-          </div>
-
-          <motion.button
-            onClick={nextPhoto}
-            style={{
-              background: 'none',
-              border: `2px solid ${theme.palette.text.secondary}`,
-              borderRadius: '50%',
-              width: '40px',
-              height: '40px',
-              cursor: 'pointer',
-              color: theme.palette.text.secondary,
-              fontSize: '1.2rem'
-            }}
-            whileHover={{ scale: 1.1, borderColor: theme.palette.text.primary }}
-            whileTap={{ scale: 0.95 }}
-          >
-            →
-          </motion.button>
-        </div>
-      </div>
+      <CardStack photos={photos} />
     </div>
   )
 }
