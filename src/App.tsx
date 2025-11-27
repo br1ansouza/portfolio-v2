@@ -9,7 +9,18 @@ import { Hero, About, Projects, Certificates, Resume, Contact } from './componen
 gsap.registerPlugin(useGSAP, ScrollTrigger, ScrollSmoother)
 
 function App() {
-  const [count, setCount] = useState(0)
+  const main = useRef<HTMLDivElement>(null)
+  const smoother = useRef<any>(null)
+
+  useGSAP(
+    () => {
+      smoother.current = ScrollSmoother.create({
+        smooth: 1.5,
+        effects: true,
+      })
+    },
+    { scope: main }
+  )
 
   return (
     <>
