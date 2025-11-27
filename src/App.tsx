@@ -1,4 +1,4 @@
-import React, { useRef } from 'react'
+import { useRef } from 'react'
 import gsap from 'gsap'
 import { ScrollTrigger } from 'gsap/ScrollTrigger'
 import { ScrollSmoother } from 'gsap/ScrollSmoother'
@@ -23,24 +23,26 @@ function App() {
   )
 
   return (
-    <div id="smooth-wrapper" ref={main}>
-      <div 
-        id="smooth-content"
-        style={{ 
-          fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
-          background: 'linear-gradient(135deg, #FCF9EA 0%, #D0F2E7 70%, #4A6B9A 100%)',
-          minHeight: '100vh'
-        }}
-      >
-        <Header smoother={smoother} />
-        <Hero />
-        <About />
-        <Projects />
-        <Certificates />
-        <Resume />
-        <Contact />
+    <>
+      <Header smoother={smoother} />
+      <div id="smooth-wrapper" ref={main}>
+        <div 
+          id="smooth-content"
+          style={{ 
+            fontFamily: 'Inter, -apple-system, BlinkMacSystemFont, sans-serif',
+            background: 'linear-gradient(135deg, #fffdf1ff 0%, #D0F2E7 90%, #4A6B9A 100%)',
+            minHeight: '100vh'
+          }}
+        >
+          <Hero />
+          <About />
+          <Projects />
+          <Certificates />
+          <Resume />
+          <Contact />
+        </div>
       </div>
-    </div>
+    </>
   )
 }
 
