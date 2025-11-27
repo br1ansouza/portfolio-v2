@@ -128,11 +128,11 @@ export const gsapConfig = {
   techIcons: {
     timeScale: 1.2,
     movement: {
-      velocity: 10
+      velocity: 2
     },
     rotation: {
-      duration: 0.2,
-      random: () => (Math.random() - 0.5) * 30,
+      duration: 0.15,
+      random: () => (Math.random() - 0.5) * 8,
       yoyo: true,
       repeat: 1,
       ease: 'power1.inOut'

@@ -63,6 +63,7 @@ const Card = ({ photo, index, total, onSendToBack }: CardProps) => {
   const opacity = useTransform(x, [-200, -100, 0, 100, 200], [0.5, 1, 1, 1, 0.5])
   
   const isFront = index === 0
+  const rotation = index % 2 === 0 ? 3 : -3
 
   const handleDragEnd = () => {
     if (Math.abs(x.get()) > 80) {
@@ -83,20 +84,18 @@ const Card = ({ photo, index, total, onSendToBack }: CardProps) => {
         cursor: isFront ? 'grab' : 'default',
         zIndex: total - index,
         x: isFront ? x : 0,
-        rotateZ: isFront ? rotateZ : index % 2 === 0 ? 3 : -3,
-        opacity: isFront ? opacity : 1
+        rotateZ: isFront ? rotateZ : rotation,
+        opacity: isFront ? opacity : 1,
+        scale: 1 - index * 0.06,
+        y: index * 20
       }}
-      initial={false}
-      animate={{ 
-        scale: 1 - index * 0.06, 
-        y: index * 20,
-      }}
-      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
       drag={isFront ? 'x' : false}
       dragConstraints={{ left: 0, right: 0 }}
       dragElastic={0.9}
       onDragEnd={handleDragEnd}
       whileDrag={{ cursor: 'grabbing' }}
+      layout
+      transition={{ type: 'spring', stiffness: 400, damping: 30 }}
     >
       <img 
         src={photo} 
