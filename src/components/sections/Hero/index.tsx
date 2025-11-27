@@ -4,7 +4,7 @@ import { gsap } from 'gsap'
 import { globalStyles } from '../../../styles/globalStyles'
 import { gsapConfig } from '../../../styles/animations'
 import { theme } from '../../../styles/theme'
-import profileImage from '../../../assets/image-profile.jpg'
+import profileImage from '../../../assets/photos/image-profile.jpg'
 
 const Hero = () => {
   const titleRef = useRef<HTMLHeadingElement>(null)
