@@ -115,6 +115,7 @@ const Header = ({ smoother }: HeaderProps) => {
                       color: activeSection === item.id ? theme.palette.text.primary : theme.palette.text.secondary,
                       cursor: 'pointer',
                       fontSize: '1rem',
+                      fontWeight: 500,
                       padding: '0.5rem 0',
                       position: 'relative'
                     }}
@@ -168,6 +169,7 @@ const Header = ({ smoother }: HeaderProps) => {
                     color: activeSection === item.id ? theme.palette.text.primary : theme.palette.text.secondary,
                     cursor: 'pointer',
                     fontSize: '1rem',
+                      fontWeight: 500,
                     padding: '0.5rem 0',
                     position: 'relative'
                   }}
