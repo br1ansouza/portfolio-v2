@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import { useEffect, useRef } from 'react'
 import { gsap } from 'gsap'
 import { globalStyles } from '../../../styles/globalStyles'
-import { animations, gsapConfig } from '../../../styles/animations'
+import { gsapConfig } from '../../../styles/animations'
 import { theme } from '../../../styles/theme'
 import profileImage from '../../../assets/image-profile.jpg'
 
@@ -13,7 +13,7 @@ const Hero = () => {
   useEffect(() => {
     if (!titleRef.current) return
 
-    const text = 'Frontend Developer'
+    const text = 'Brian de Souza'
     titleRef.current.innerHTML = text
       .split('')
       .map((char) => 
@@ -62,34 +62,39 @@ const Hero = () => {
 
   return (
     <section ref={heroRef} style={{
-      ...globalStyles.hero,
-      padding: '0 4rem',
-      paddingTop: '80px'
+      height: '100vh',
+      display: 'flex',
+      position: 'relative',
+      overflow: 'hidden'
     }}>
-      <div style={{
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
-        maxWidth: '1200px',
-        width: '100%',
-        gap: '4rem'
-      }}>
-        <motion.div 
-          style={{ flex: 1, textAlign: 'left' }}
-          {...animations.heroContainer}
+      <motion.div 
+        style={{
+          flex: 1,
+          display: 'flex',
+          flexDirection: 'column',
+          justifyContent: 'center',
+          paddingLeft: '4rem',
+          paddingRight: '2rem',
+          zIndex: 2
+        }}
+        initial={{ opacity: 0, x: -50 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.2 }}
+      >
+        <motion.p 
+          style={{
+            color: theme.palette.text.secondary,
+            fontSize: '1.4rem',
+            marginBottom: '0.5rem',
+            fontFamily: "'Fredoka One', cursive"
+          }}
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5, delay: 0.4 }}
         >
-          <motion.p 
-            style={{
-              color: theme.palette.text.secondary,
-              fontSize: '1.3rem',
-              marginBottom: '0.5rem'
-            }}
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.5 }}
-          >
-            Olá, eu sou
-          </motion.p>
+          Portfólio
+        </motion.p>
+        <div style={{ width: 'fit-content' }}>
           <motion.h1 
             ref={titleRef}
             style={{
@@ -97,31 +102,53 @@ const Hero = () => {
               cursor: 'pointer',
               textAlign: 'left'
             }}
-            {...animations.heroTitle}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 0.5 }}
           >
-            Frontend Developer
+            Brian de Souza
           </motion.h1>
-        </motion.div>
-
-        <motion.div
-          style={{ flex: '0 0 auto' }}
-          initial={{ opacity: 0, x: 50 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ duration: 0.6, delay: 0.3 }}
-        >
-          <img 
-            src={profileImage} 
-            alt="Foto de perfil"
+          <motion.p 
             style={{
-              width: '450px',
-              height: '550px',
-              objectFit: 'cover',
-              borderRadius: '6px',
-              boxShadow: '0 12px 40px rgba(35, 67, 116, 0.25)'
+              color: theme.palette.text.secondary,
+              fontSize: '1.3rem',
+              fontFamily: "'Fredoka One', cursive",
+              textAlign: 'right',
+              marginTop: '-0.5rem'
             }}
-          />
-        </motion.div>
-      </div>
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.6 }}
+          >
+            Desenvolvedor
+          </motion.p>
+        </div>
+      </motion.div>
+
+      <motion.div
+        style={{
+          position: 'absolute',
+          right: 0,
+          top: 0,
+          height: '100%',
+          width: '50%',
+          zIndex: 1
+        }}
+        initial={{ opacity: 0, x: 100 }}
+        animate={{ opacity: 1, x: 0 }}
+        transition={{ duration: 0.8, delay: 0.3 }}
+      >
+        <img 
+          src={profileImage} 
+          alt="Foto de perfil"
+          style={{
+            width: '100%',
+            height: '100%',
+            objectFit: 'cover',
+            objectPosition: 'top center'
+          }}
+        />
+      </motion.div>
     </section>
   )
 }
