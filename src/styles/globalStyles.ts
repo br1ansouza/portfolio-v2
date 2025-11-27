@@ -45,7 +45,9 @@ export const globalStyles = {
   },
 
   heroTitle: {
-    ...theme.typography.h1,
+    fontSize: '3.8rem',
+    fontWeight: 700,
+    lineHeight: 1.2,
     marginBottom: '1rem',
     color: theme.palette.text.primary,
     fontFamily: "'Fredoka One', cursive"

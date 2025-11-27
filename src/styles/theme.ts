@@ -11,8 +11,8 @@ export const theme = {
       dark: '#1A3256'
     },
     background: {
-      default: '#FCF9EA',
-      paper: '#FCF9EA'
+      default: '#fffdf1ff',
+      paper: '#fffdf1ff'
     },
     text: {
       primary: '#234374',
