@@ -23,9 +23,8 @@ const PersonalSection = () => {
         </p>
 
         <p style={{ fontSize: '1.15rem', lineHeight: '1.8', color: theme.palette.text.secondary }}>
-          Atualmente focado no ecossistema React, Node.js e tecnologias modernas 
-          que potencializam tanto a experiência do usuário quanto a produtividade 
-          no desenvolvimento.
+          Também curto pegar a moto e viajar, conhecer lugares novos 
+          sempre que dá.
         </p>
       </div>
 

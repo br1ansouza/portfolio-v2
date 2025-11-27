@@ -23,11 +23,14 @@ const TechSection = () => {
     const config = gsapConfig.techIcons
 
     icons.forEach((icon) => {
+      const label = icon.querySelector('.tech-label') as HTMLElement
+      const chars = label?.querySelectorAll('span')
+      const img = icon.querySelector('img')
+
       icon.addEventListener('mouseenter', () => {
         const tl = gsap.timeline({ onComplete: () => { tl.kill() } })
         tl.timeScale(config.timeScale)
 
-        const img = icon.querySelector('img')
         tl.to(img, {
           x: deltaX * config.movement.velocity,
           y: deltaY * config.movement.velocity,
@@ -42,6 +45,21 @@ const TechSection = () => {
           repeat: config.rotation.repeat,
           ease: config.rotation.ease
         }, '<')
+
+        gsap.to(img, { filter: 'blur(3px)', duration: 0.2 })
+        if (chars) {
+          gsap.fromTo(chars, 
+            { opacity: 0, y: 5 },
+            { opacity: 1, y: 0, stagger: 0.03, duration: 0.1, ease: 'power2.out' }
+          )
+        }
+      })
+
+      icon.addEventListener('mouseleave', () => {
+        gsap.to(img, { filter: 'blur(0px)', duration: 0.2 })
+        if (chars) {
+          gsap.to(chars, { opacity: 0, duration: 0.15 })
+        }
       })
     })
 
@@ -67,8 +85,23 @@ const TechSection = () => {
 
       <div ref={techRef} style={{ display: 'grid', gridTemplateColumns: 'repeat(4, 1fr)', gap: '1.5rem 0', justifyItems: 'center' }}>
         {allTechnologies.map((tech) => (
-          <div key={tech.name} className="tech-icon" style={{ cursor: 'pointer' }} title={tech.name}>
+          <div key={tech.name} className="tech-icon" style={{ cursor: 'pointer', position: 'relative', width: '65px', height: '65px' }}>
             <img src={tech.icon} alt={tech.name} style={{ width: '65px', height: '65px' }} />
+            <span className="tech-label" style={{ 
+              position: 'absolute', 
+              top: '50%', 
+              left: '50%', 
+              transform: 'translate(-50%, -50%)',
+              fontSize: '0.7rem', 
+              fontWeight: 700,
+              color: theme.palette.text.primary,
+              whiteSpace: 'nowrap',
+              pointerEvents: 'none'
+            }}>
+              {tech.name.split('').map((char, i) => (
+                <span key={i} style={{ opacity: 0, display: 'inline-block' }}>{char === ' ' ? '\u00A0' : char}</span>
+              ))}
+            </span>
           </div>
         ))}
       </div>

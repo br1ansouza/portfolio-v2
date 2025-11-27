@@ -22,64 +22,74 @@ const About = () => {
           <motion.h2 style={{ ...globalStyles.title, fontFamily: "'Fredoka One', cursive", textAlign: 'left', margin: 0 }}>
             Sobre mim
           </motion.h2>
-          
-          <div style={{ display: 'flex', gap: '0.5rem' }}>
-            <motion.button
+
+          <div style={{ 
+            display: 'inline-flex', 
+            backgroundColor: 'rgba(35, 67, 116, 0.1)',
+            borderRadius: '12px',
+            padding: '4px',
+            position: 'relative'
+          }}>
+            <motion.div
+              style={{
+                position: 'absolute',
+                backgroundColor: theme.palette.secondary.main,
+                borderRadius: '8px',
+                height: 'calc(100% - 8px)',
+                top: '4px'
+              }}
+              animate={{
+                width: activeTab === 'tech' ? '60px' : '76px',
+                x: activeTab === 'tech' ? 0 : 64
+              }}
+              transition={{ type: 'spring', stiffness: 300, damping: 30 }}
+            />
+            
+            <button
               onClick={() => setActiveTab('tech')}
-              disabled={activeTab === 'tech'}
               style={{
-                background: activeTab === 'tech' ? theme.palette.primary.main : 'transparent',
-                border: `2px solid ${theme.palette.primary.main}`,
-                borderRadius: '50%',
-                width: '36px',
-                height: '36px',
-                cursor: activeTab === 'tech' ? 'default' : 'pointer',
-                color: activeTab === 'tech' ? theme.palette.text.primary : theme.palette.primary.dark,
-                fontSize: '1.1rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.3s ease'
+                padding: '8px 14px',
+                background: 'none',
+                border: 'none',
+                color: activeTab === 'tech' ? '#fff' : theme.palette.text.secondary,
+                fontWeight: 600,
+                cursor: 'pointer',
+                position: 'relative',
+                zIndex: 1,
+                transition: 'color 0.3s'
               }}
-              whileHover={activeTab !== 'tech' ? { scale: 1.1, backgroundColor: theme.palette.primary.light } : {}}
-              whileTap={activeTab !== 'tech' ? { scale: 0.95 } : {}}
             >
-              ‹
-            </motion.button>
-            <motion.button
+              Tech
+            </button>
+            
+            <button
               onClick={() => setActiveTab('personal')}
-              disabled={activeTab === 'personal'}
               style={{
-                background: activeTab === 'personal' ? theme.palette.primary.main : 'transparent',
-                border: `2px solid ${theme.palette.primary.main}`,
-                borderRadius: '50%',
-                width: '36px',
-                height: '36px',
-                cursor: activeTab === 'personal' ? 'default' : 'pointer',
-                color: activeTab === 'personal' ? theme.palette.text.primary : theme.palette.primary.dark,
-                fontSize: '1.1rem',
-                display: 'flex',
-                alignItems: 'center',
-                justifyContent: 'center',
-                transition: 'all 0.3s ease'
+                padding: '8px 14px',
+                background: 'none',
+                border: 'none',
+                color: activeTab === 'personal' ? '#fff' : theme.palette.text.secondary,
+                fontWeight: 600,
+                cursor: 'pointer',
+                position: 'relative',
+                zIndex: 1,
+                transition: 'color 0.3s'
               }}
-              whileHover={activeTab !== 'personal' ? { scale: 1.1, backgroundColor: theme.palette.primary.light } : {}}
-              whileTap={activeTab !== 'personal' ? { scale: 0.95 } : {}}
             >
-              ›
-            </motion.button>
+              Pessoal
+            </button>
           </div>
         </div>
 
         <div style={{ position: 'relative', minHeight: '450px' }}>
-          <AnimatePresence>
+          <AnimatePresence mode="wait">
             {activeTab === 'tech' && (
               <motion.div
                 key="tech"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, x: -20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: 20 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
                 style={{ position: 'absolute', width: '100%', top: 0 }}
               >
                 <TechSection />
@@ -88,10 +98,10 @@ const About = () => {
             {activeTab === 'personal' && (
               <motion.div
                 key="personal"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.3 }}
+                initial={{ opacity: 0, x: 20 }}
+                animate={{ opacity: 1, x: 0 }}
+                exit={{ opacity: 0, x: -20 }}
+                transition={{ duration: 0.4, ease: 'easeOut' }}
                 style={{ position: 'absolute', width: '100%', top: 0 }}
               >
                 <PersonalSection />
